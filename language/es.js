@@ -128,7 +128,7 @@ ${a}❏ ABOUT USER${a}
  ${a}│ Nombre : ${pushname}${a}
  ${a}│ Numero : wa.me/${sender.split("@")[0]}${a}
  ${a}│ owmer bot : ${owner}${a}
- ${a}│ Tu dinero : Rp${uangku},-${a}
+ ${a}│ Tu dinero : Rp${midinero},-${a}
  ${a}│ XP : ${getLevelingXp(sender)}/${reqXp} ${a}
  ${a}│ Level : ${getLevelingLevel(sender)}${a}
  ${a}│ Role : ${role}${a}
