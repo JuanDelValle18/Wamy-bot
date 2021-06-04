@@ -19,7 +19,7 @@ async function auth() {
 client.logger.level = 'warn'
 console.log(banner.string)
 client.on('qr', qr => {
-   console.log(color(time,"white"),color('[','white'),color('∆','red'),color(']','white'),color('qr already scan.subscribe','white'),color('YOU','red'),color('TUBE','white'),color('Special Week 愛する','yellow'))
+   console.log(color(time,"white"),color('[','white'),color('∆','red'),color(']','white'),color('qr already scan.subscribe','white'),color('YOU','red'),color('TUBE','white'),color('Juan del Valle','yellow'))
 })
 
 fs.existsSync('./session.json') && client.loadAuthInfo('./session.json')
