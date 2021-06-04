@@ -102,7 +102,7 @@ const {
 /*[-- VCARD --]*/
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
-            + 'FN:Special Week 愛する\n' 
+            + 'FN:Juan del Valle\n' 
             + `ORG: SatanicBots;\n`
             + `TEL;type=CELL;type=VOICE;waid=${owner}:${PhoneNumber('+' + owner).getNumber('international')}\n` 
             + 'END:VCARD' 
@@ -1113,7 +1113,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nama bot* : ${me.name}\n*OWNER* : *Special Week 愛する*\n*AUTHOR* : Special Week 愛する\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
+					teks = `*Nama bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTHOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -1133,8 +1133,8 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'admin':
          	   case 'owner':
          	   case 'creator':
-                  client.sendMessage(from, {displayname: "Special Week 愛する", vcard: vcard}, MessageType.contact, { quoted: mek})
-                  client.sendMessage(from, 'Numero de Special Week 愛する no spam',MessageType.text, { quoted: mek} )
+                  client.sendMessage(from, {displayname: "Juan del Valle", vcard: vcard}, MessageType.contact, { quoted: mek})
+                  client.sendMessage(from, 'Numero de Juan del Valle no spam o te bloquearé',MessageType.text, { quoted: mek} )
 					break    
 				case 'leaderboard':
 				case 'lb':
