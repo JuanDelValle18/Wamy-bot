@@ -45,7 +45,7 @@ const {
 	cr,
 	BotPrefix,
 	owner,
-	author,
+	autor,
 	pack
 } = settingan
 
@@ -139,14 +139,14 @@ function kyun(seconds){
   return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
 }
 
-function addMetadata(packname, author) {	
-	if (!packname) packname = 'WABot'; if (!author) author = 'Bot';	
-	author = author.replace(/[^a-zA-Z0-9]/g, '');	
-	let name = `${author}_${packname}`
+function addMetadata(packname, autor) {	
+	if (!packname) packname = 'WABot'; if (!autor) autor = 'Bot';	
+	autor = autor.replace(/[^a-zA-Z0-9]/g, '');	
+	let name = `${autor}_${packname}`
 	if (fs.existsSync(`./${name}.exif`)) return `./${name}.exif`
 	const json = {	
 		"sticker-pack-name": packname,
-		"sticker-pack-publisher": author,
+		"sticker-pack-publisher": autor,
 	}
 	const littleEndian = Buffer.from([0x49, 0x49, 0x2A, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x41, 0x57, 0x07, 0x00])	
 	const bytes = [0x00, 0x00, 0x16, 0x00, 0x00, 0x00]	
@@ -203,9 +203,9 @@ module.exports = msgHdlr = async (client , mek) => {
 			const from = mek.key.remoteJid
 			const type = Object.keys(mek.message)[0]
 			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
-			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
-			const timi = moment.tz('Asia/Jakarta').add(30, 'days').calendar();
-			const timu = moment.tz('Asia/Jakarta').add(20, 'days').calendar();
+			const time = moment.tz('América/Guatemala').format('DD/MM HH:mm:ss')
+			const timi = moment.tz('América/Guatemala').add(30, 'days').calendar();
+			const timu = moment.tz('América/Guatemala').add(20, 'days').calendar();
             body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
@@ -413,29 +413,29 @@ module.exports = msgHdlr = async (client , mek) => {
 				try {
 					const getmemex = groupMembers.length	
 				    if (getmemex <= memberlimit) {
-					reply(`maaf member group belum memenuhi syarat. minimal member group adalah ${memberlimit}`)
+					reply(`Lo sentimos, los miembros del grupo no cumplen con los requisitos. miembro mínimo del grupo es ${memberlimit}`)
 					setTimeout( () => {
  	                           client.groupLeave(from) 
  					   	}, 5000)
 							setTimeout( () => {
 							client.updatePresence(from, Presence.composing)
-							reply("1detik")
+							reply("1segundos")
 						}, 4000)
 							setTimeout( () => {
 							client.updatePresence(from, Presence.composing)
-							reply("2detik")
+							reply("2segundos")
 						}, 3000)
 							setTimeout( () => {
 							client.updatePresence(from, Presence.composing)
-							reply("3detik")
+							reply("3segundos")
 						}, 2000)
 							setTimeout( () => {
 							client.updatePresence(from, Presence.composing)
-							reply("4detik")
+							reply("4segundos")
 						}, 1000)
 							setTimeout( () => {
 							client.updatePresence(from, Presence.composing)
-							reply("5detik")
+							reply("5segundos")
 						}, 0)
 				    }
 		       } catch (err) { console.error(err)  }
@@ -446,33 +446,33 @@ module.exports = msgHdlr = async (client , mek) => {
             if (bad.includes(messagesC)) {
                 if (!isGroupAdmins) {
                     try { 
-                        reply("JAGA UCAPAN DONG!! 😠")
+                        reply("MANTENGA SU HABLAR CONTROLADO!! 😠")
                         setTimeout( () => {
  	                           client.groupRemove(from, sender) 
  					   	}, 5000)
 								setTimeout( () => {
 								client.updatePresence(from, Presence.composing)
-								reply("1detik")
+								reply("1segundo")
 							}, 4000)
 								setTimeout( () => {
 								client.updatePresence(from, Presence.composing)
-								reply("2detik")
+								reply("2segundos")
 							}, 3000)
 								setTimeout( () => {
 								client.updatePresence(from, Presence.composing)
-								reply("3detik")
+								reply("3segundos")
 							}, 2000)
 								setTimeout( () => {
 								client.updatePresence(from, Presence.composing)
-								reply("4detik")
+								reply("4segundos")
 							}, 1000)
 								setTimeout( () => {
 								client.updatePresence(from, Presence.composing)
-								reply("*「 ANTI BADWORD 」*\nKamu dikick karena berkata kasar!")
+								reply("*「 ANTI BADWORD 」*\n¡Te patearon por ser grosero!")
 							}, 0)
-                        } catch { client.sendMessage(from, `Untung cya bukan admin, kalo admin udah cya kick!`, text , {quoted : mek}) }
+                        } catch { client.sendMessage(from, `Afortunadamente, X no es un administrador, si X ya es el administrador entonces kick!`, text , {quoted : mek}) }
                 } else {
-                    return reply( "Tolong Jaga Ucapan Min 😇")
+                    return reply( "Por favor, cuídate Mini Wamy 😇")
                 }
             }
         }
@@ -481,33 +481,33 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (messagesC.includes("://chat.whatsapp.com/")){
 					if (!isGroup) return
 					if (!isAntiLink) return
-					if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+					if (isGroupAdmins) return reply('porque eres el administrador del grupo, el bot no te echará')
 					client.updatePresence(from, Presence.composing)
-					if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+					if (messagesC.includes("#permiso de administrador")) return reply("#permiso de administrador aceptado")
 					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-						reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+						reply(`Enlace de grupo detectado lo siento ${sender.split("@")[0]} Serás expulsado del grupo en 5 segundos.`)
 						setTimeout( () => {
 						client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 					}, 5000)
 						setTimeout( () => {
 						client.updatePresence(from, Presence.composing)
-						reply("1detik")
+						reply("1segundo")
 					}, 4000)
 						setTimeout( () => {
 						client.updatePresence(from, Presence.composing)
-						reply("2detik")
+						reply("2segundos")
 					}, 3000)
 						setTimeout( () => {
 						client.updatePresence(from, Presence.composing)
-						reply("3detik")
+						reply("3segundos")
 					}, 2000)
 						setTimeout( () => {
 						client.updatePresence(from, Presence.composing)
-						reply("4detik")
+						reply("4segundos")
 					}, 1000)
 						setTimeout( () => {
 						client.updatePresence(from, Presence.composing)
-						reply("5detik")
+						reply("5segundos")
 					}, 0)
 				}
  	       
@@ -607,24 +607,12 @@ module.exports = msgHdlr = async (client , mek) => {
 					})
 					});
 				break
-				case 'pornhub':
-                	if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					var gh = body.slice(9)
-					var porn = gh.split("&")[0];
-					var hub = gh.split("&")[1];
-					if (args.length < 1) return reply(`「❗」ejemplo : ${prefix}pornhub Ramlan & Hub`)
-					reply(ind.wait())
-					alan = await getBuffer(`https://vinz.zeks.xyz/api/pornhub?text1=${porn}&text2=${hub}`)
-					client.sendMessage(from, alan, image, {quoted: mek})
-					await limitAdd(sender)
-				break
 				case 'textlight':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))				
 					if (args.length < 1) return reply(ind.wrongf())
 					ligh = body.slice(11)
-					if (ligh.length > 10) return reply('Teksnya kepanjangan, maksimal 9 karakter')
+					if (ligh.length > 10) return reply('El texto es demasiado largo, hasta 9 caracteres.')
 					reply(ind.wait())
 					lawak = await getBuffer(`https://api.zeks.xyz/api/tlight?text=${ligh}&apikey=apivinz`)
 			    	client.sendMessage(from, lawak, image, {quoted: mek})
@@ -645,19 +633,19 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'nulis':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (args.length < 1) return reply(`Teksnya mana kak? ejemplo : ${prefix}nulis Ramlan baik hati`)
+					if (args.length < 1) return reply(`¿Dónde está el texto? ejemplo : ${prefix}nulis Wamy es cool`)
 					nul = body.slice(7)
-					reply('「❗」WAIT BRO GUE NULIS DUMLU YAKAN')
+					reply('「❗」ESPERA HERMANO YO ESCRIBO PRIMERO, OK')
 					tak = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${nul}&apikey=apivinz`)
-					client.sendMessage(from, tak, image, {quoted: mek, caption: 'Lebih baik nulis sendiri ya kak :*'})
+					client.sendMessage(from, tak, image, {quoted: mek, caption: 'Mejor escribirlo tu mismo :*'})
 					await limitAdd(sender)				
 				break			
 				case 'tahta':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (args.length < 1) return reply(`「❗」ejemplo : ${prefix}hartatahta hanya dia`)
+					if (args.length < 1) return reply(`「❗」ejemplo : ${prefix}el único tesoro es el`)
 					har = body.slice(12)
-					reply('「❗」Hirti Tihti Tai Anjg :v')
+					reply('「❗」Yi istiy hirti :v')
 					buffer = await getBuffer(`https://api.zeks.xyz/api/hartatahta?text=${har}&apikey=apivinz`)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
@@ -669,7 +657,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					const tex = encodeURIComponent(body.slice(8))
-					if (!tex) return client.sendMessage(from, 'MASUKAN URL/TEKS UNTUK DI JADIKAN QR', text, {quoted: mek})
+					if (!tex) return client.sendMessage(from, 'INTRODUZCA LA URL / TEXTO PARA HACER QR', text, {quoted: mek})
 					const buff = await getBuffer(`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${tex}`)
 					client.sendMessage(from, buff, image, {quoted: mek})
 					await limitAdd(sender)
@@ -705,7 +693,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 			data = await fetchJson(`https://tobz-api.herokuapp.com/api/happymod?q=${body.slice(10)}&apikey=BotWeA`)
 			hupo = data.result[0] 
-			teks = `*Nama*: ${data.result[0].title}\n*version*: ${hupo.version}\n*size:* ${hupo.size}\n*root*: ${hupo.root}\n*purchase*: ${hupo.price}\n*link*: ${hupo.link}\n*download*: ${hupo.download}`
+			teks = `*Nombre*: ${data.result[0].title}\n*version*: ${hupo.version}\n*size:* ${hupo.size}\n*root*: ${hupo.root}\n*purchase*: ${hupo.price}\n*link*: ${hupo.link}\n*download*: ${hupo.download}`
 			buffer = await getBuffer(hupo.image)
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			await limitAdd(sender)
@@ -871,12 +859,12 @@ module.exports = msgHdlr = async (client , mek) => {
                 var gh = body.slice(12)
 					var quote = gh.split("|")[0];
 					var wm = gh.split("|")[1];
-					const pref = `Usage: \n${prefix}quotemaker teks|watermark\n\nEx :\n${prefix}quotemaker ini ejemplo|bicit`
+					const pref = `Uso: \n${prefix}quotemaker teks|watermark\n\nEj :\n${prefix}quotemaker por ejemplo|bicit`
 					if (args.length < 1) return reply(pref)
 					reply(ind.wait())
-					anu = await fetchJson(`https://terhambar.com/aw/qts/?kata=${quote}&author=${wm}&tipe=random`, {method: 'get'})
+					anu = await fetchJson(`https://terhambar.com/aw/qts/?kata=${quote}&autor=${wm}&tipe=random`, {method: 'get'})
 					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, image, {caption: 'Nih anjim', quoted: mek})
+					client.sendMessage(from, buffer, image, {caption: 'Aquí está Wamy-sito', quoted: mek})
 					await limitAdd(sender)
 					break
 				//fadli 
@@ -1104,8 +1092,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'ping':
           		if (!isRegistered) return reply(ind.noregis())
            		 await client.sendMessage(from, `Pong!!!!\nSpeed: ${processTime(time, moment())} _Second_`)
-					break
-               case 'help': 
+				break
 				case 'menu':
 				if (!isRegistered) return reply(ind.noregis())
 				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
@@ -1116,7 +1103,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nombre bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTHOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
+					teks = `*Nombre bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -1235,18 +1222,18 @@ module.exports = msgHdlr = async (client , mek) => {
 				if(isNaN(payout)) return await reply('limit harus berupa angka!!')
 				const koinPerlimit = 300
 				const total = koinPerlimit * payout
-				if ( checkATMuser(sender) <= total) return reply(`maaf uang kamu belum mencukupi. silahkan kumpulkan dan beli nanti`)
+				if ( checkATMuser(sender) <= total) return reply(`Lo siento, no tienes suficiente dinero. recoger y comprar más tarde`)
 				if ( checkATMuser(sender) >= total ) {
 					confirmATM(sender, total)
 					bayarLimit(sender, payout)
-					await reply(`*「 PEMBAYARAN BERHASIL 」*\n\n*Remitente* : Admin\n*penerima* : ${pushname}\n*nominal pembelian* : ${payout} \n*harga limit* : ${koinPerlimit}/limit\n*sisa uang mu* : ${checkATMuser(sender)}\n\nproses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
+					await reply(`*「 PAGO EXITOSO 」*\n\n*Remitente* : Admin\n*receptor* : ${pushname}\n*monto de la compra* : ${payout} \n*precio límite* : ${koinPerlimit}/limite\n*sisa uang muel resto de tu dinero* : ${checkATMuser(sender)}\n\nel proceso es exitoso con el número de pago\n${createSerial(15)}`)
 				} 
 				break
 				//no rest api 
 				case 'slap':
                     kapankah = body.slice(1)
                     if (isLimit(sender)) return reply(ind.limitend(pusname))
-					const slap =['anjing','babi lu','anak anjing','udah tolol nub Lagi','muka lo kek monyet','udah jomblo sendirian lagi dirumah tolol','so so an mau punya pacar muka aja kek monyet lepass dari kandang','ganteng doang di toxic aja dibilang baperan','pantek kau','bangsat kau','ku entod kalian nangis kau','memek lu semua','lihat anak anjing lagi baca','ganteng doang jemput cewe dipanggang','kamu cantik beb bullshit anjing cowo buaya','anak dajjal','puki lu','anjing ngajak gelud','sama hantu takut cupu ngentod','cupu cupu aja gausah bacot','kontol lu semua','bocah lu semua kontol','3 Hari Lagi']
+					const slap =['perro ',' tu cerdo ',' cachorros ',' eres tonto de nuevo ',' te ves como un mono ',' estás soltero otra vez en casa idiota ',' así que quieres tener una novia, solo mira como un mono se ha escapado de la jaula ',' Eres guapo y tóxico, simplemente estás baperan ',' Eres un bastardo ',' Eres un bastardo ',' Siento que estás llorando ',' Estás todo coño ',' Mirando a los cachorros leyendo ',' guapo, solo recoge chicas asando ',' Eres hermoso beb, mierda, perro, cocodrilo, ',' hijo del diablo ',' puki lu ',' perro invita a gelud ',' con fantasmas temerosos de cupu ngentod ',' cupu cupu simplemente no muerdas ',' todos ustedes dick ',' chico, todos ustedes dick ',' 3 días otra vez ']
 					const ple = slap[Math.floor(Math.random() * slap.length)]
 					pod = await getBuffer(`https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif`)
 					client.sendMessage(from, pod, image, { quoted: mek, caption: '*Toxic*\n\n'+ ple })
@@ -1274,7 +1261,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					brainly(`${brien}`).then(res => {
 					teks = '❉───────────❉\n'
 					for (let Y of res.data) {
-						teks += `\n*「 _BRAINLY_ 」*\n\n*➸ Pertanyaan:* ${Y.pertanyaan}\n\n*➸ Jawaban:* ${Y.jawaban[0].text}\n❉───────────❉\n`
+						teks += `\n*「 _BRAINLY_ 」*\n\n*➸ Pregunta:* ${Y.Pregunta}\n\n*➸ Respuesta:* ${Y.Respuesta[0].text}\n❉───────────❉\n`
 					}
 					client.sendMessage(from, teks, text, {quoted: mek, detectLinks: false})
                         console.log(res)
@@ -1287,7 +1274,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					bisakah = body.slice(1)
 					const bisa =['Bisa','Tidak Bisa','Coba Ulangi']
 					const keh = bisa[Math.floor(Math.random() * bisa.length)]
-					client.sendMessage(from, 'Pertanyaan : *'+bisakah+'*\n\nJawaban : '+ keh, text, { quoted: mek })
+					client.sendMessage(from, 'Pregunta : *'+bisakah+'*\n\Respuesta : '+ keh, text, { quoted: mek })
 					await limitAdd(sender)
 					break
 				case 'kapankah':
@@ -1296,7 +1283,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					kapankah = body.slice(1)
 					const kapan =['Besok','Lusa','Tadi','4 Hari Lagi','5 Hari Lagi','6 Hari Lagi','1 Minggu Lagi','2 Minggu Lagi','3 Minggu Lagi','1 Bulan Lagi','2 Bulan Lagi','3 Bulan Lagi','4 Bulan Lagi','5 Bulan Lagi','6 Bulan Lagi','1 Tahun Lagi','2 Tahun Lagi','3 Tahun Lagi','4 Tahun Lagi','5 Tahun Lagi','6 Tahun Lagi','1 Abad lagi','3 Hari Lagi']
 					const koh = kapan[Math.floor(Math.random() * kapan.length)]
-					client.sendMessage(from, 'Pertanyaan : *'+kapankah+'*\n\nJawaban : '+ koh, text, { quoted: mek })
+					client.sendMessage(from, 'Pregunta : *'+kapankah+'*\n\Respuesta : '+ koh, text, { quoted: mek })
 					await limitAdd(sender)
 					break
            case 'apakah':
@@ -1305,7 +1292,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					apakah = body.slice(1)
 					const apa =['Iya','Tidak','Bisa Jadi','Coba Ulangi']
 					const kah = apa[Math.floor(Math.random() * apa.length)]
-					client.sendMessage(from, 'Pertanyaan : *'+apakah+'*\n\nJawaban : '+ kah, text, { quoted: mek })
+					client.sendMessage(from, 'Pregunta : *'+apakah+'*\n\Respuesta : '+ kah, text, { quoted: mek })
 					await limitAdd(sender)
 					break
 				case 'rate':
@@ -1314,13 +1301,13 @@ module.exports = msgHdlr = async (client , mek) => {
 					rate = body.slice(1)
 					const ra =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
 					const te = ra[Math.floor(Math.random() * ra.length)]
-					client.sendMessage(from, 'Pertanyaan : *'+rate+'*\n\nJawaban : '+ te+'%', text, { quoted: mek })
+					client.sendMessage(from, 'Pregunta : *'+rate+'*\n\nRespuesta : '+ te+'%', text, { quoted: mek })
 					await limitAdd(sender)
 					break
 				case 'truth':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-                const trut =['Pernah suka sama siapa aja? berapa lama?','Kalau boleh atau kalau mau, di gc/luar gc siapa yang akan kamu jadikan sahabat?(boleh beda/sma jenis)','apa ketakutan terbesar kamu?','pernah suka sama orang dan merasa orang itu suka sama kamu juga?','Siapa nama mantan pacar teman mu yang pernah kamu sukai diam diam?','pernah gak nyuri uang nyokap atau bokap? Alesanya?','hal yang bikin seneng pas lu lagi sedih apa','pernah cinta bertepuk sebelah tangan? kalo pernah sama siapa? rasanya gimana brou?','pernah jadi selingkuhan orang?','hal yang paling ditakutin','siapa orang yang paling berpengaruh kepada kehidupanmu','hal membanggakan apa yang kamu dapatkan di tahun ini','siapa orang yang bisa membuatmu sange','siapa orang yang pernah buatmu sange','(bgi yg muslim) pernah ga solat seharian?','Siapa yang paling mendekati tipe pasangan idealmu di sini','suka mabar(main bareng)sama siapa?','pernah nolak orang? alasannya kenapa?','Sebutkan kejadian yang bikin kamu sakit hati yang masih di inget','pencapaian yang udah didapet apa aja ditahun ini?','kebiasaan terburuk lo pas di sekolah apa?']
+                const trut =['¿Alguna vez te ha gustado alguien? ¿cuánto tiempo? ',' Si puedes o si quieres, en el gc / fuera del gc, ¿de quién serías amigo? (tal vez diferente / del mismo género) ',' ¿cuál es tu mayor miedo? ',' ¿has ¿Alguna vez le gustó alguien y sintió a esa persona como usted también? ',' ¿Cómo se llama la ex novia de su amigo que solía gustarle en secreto? ',' ¿Alguna vez le robaste dinero a tu padre o padre? ¿La razón? ',' ¿Qué te hace feliz cuando estás triste? ',' ¿Alguna vez has tenido un amor unilateral? si es así quien? ¿Cómo se siente hermano? ',' ¿Alguna vez has estado con la aventura de otra persona? ',' Lo que más temes ',' ¿Quién es la persona más influyente en tu vida? ',' ¿Qué orgullo te sentiste este año? ',' ¿Quién es la persona que puede hacerte muy feliz? ',' ¿Quién te ha hecho muy feliz? ',' (Para los musulmanes) ¿te has perdido de orar todo el día? ',' ¿Quién está más cerca de tu tipo ideal de socio aquí ',' ¿Con quién te gusta jugar? ',' ¿Alguna vez rechazas a la gente? ¿Cuál es la razón? ',' Nombra un incidente que te hizo sentir herido y que aún recuerdas ',' ¿Qué logros has obtenido este año? ',' ¿Cuál fue tu peor hábito en la escuela? ']
 					const ttrth = trut[Math.floor(Math.random() * trut.length)]
 					truteh = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
 					client.sendMessage(from, truteh, image, { caption: '*Truth*\n\n'+ ttrth, quoted: mek })
@@ -1329,7 +1316,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'dare':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				const dare =['Kirim Mensaje ke mantan kamu dan bilang "aku masih suka sama kamu','telfon crush/pacar sekarang dan ss ke pemain','pap ke salah satu anggota grup','Bilang "KAMU CANTIK BANGET NGGAK BOHONG" ke cowo','ss recent call whatsapp','drop emot "🦄??" setiap ngetik di gc/pc selama 1 hari','kirim voice note bilang can i call u baby?','drop kutipan lagu/quote, terus tag member yang cocok buat kutipan itu','pake foto sule sampe 3 hari','ketik pake bahasa daerah 24 jam','ganti nama menjadi "gue anak lucinta luna" selama 5 jam','chat ke kontak wa urutan sesuai %batre kamu, terus bilang ke dia "i lucky to hv you','prank chat mantan dan bilang " i love u, pgn balikan','record voice baca surah al-kautsar','bilang "i hv crush on you, mau jadi pacarku gak?" ke lawan jenis yang terakhir bgt kamu chat (serah di wa/tele), tunggu dia bales, kalo udah ss drop ke sini','sebutkan tipe pacar mu!','snap/post foto pacar/crush','teriak gajelas lalu kirim pake vn kesini','pap mukamu lalu kirim ke salah satu temanmu','kirim fotomu dengan caption, aku anak pungut','teriak pake kata kasar sambil vn trus kirim kesini','teriak " anjimm gabutt anjimmm " di depan rumah mu','ganti nama jadi " BOWO " selama 24 jam','Pura pura kerasukan, ejemplo : kerasukan maung, kerasukan belalang, kerasukan kulkas, dll']
+				const dare =['Envía un mensaje a tu ex y dile' todavía me gustas ',' llama a tu enamorada / novia ahora y sss al jugador ',' pap a un miembro del grupo ',' di "ERES TAN HERMOSA, NO MIENTES" a los chicos ',' la llamada reciente de whatsapp ',' soltar emote "🦄 ???" cada vez que escribes en gc / pc durante 1 día ',' enviar una nota de voz diciendo ¿puedo llamarte bebé? ',' soltar la cita de la canción / cita, sigue etiquetando al miembro que sea adecuado para esa cita ',' usa la foto de Sule durante 3 días ',' escribe en el idioma local las 24 horas ',' cambia el nombre a "Soy un hijo de lucinta luna" durante 5 horas ',' chatea para tener contacto en el orden de acuerdo con su% de batería, siga diciéndole "tengo suerte de estar contigo", "bromea con tu ex y dile" te amo, por favor vuelve "," graba la voz, lee ICKKC " , 'di "Estoy enamorado de ti, ¿quieres ser mi novia o no?" al último sexo opuesto con el que conversaste (enviar en wa / tele), espera a que responda, cuando hayas terminado, ven aquí' , '¡indica tu tipo de novio!', 'saca / publica foto de novia / enamoramiento', 'grita poco claro y luego envía usando vn aquí', 'tápate la cara y envíasela a uno de tus amigos', 'Envía tu foto con la leyenda, soy un niño adoptado', 'grita usando palabras duras mientras vn y luego envíala aquí', 'grita "ICKKCK" frente a tu casa', 'cambia el nombre a "BOWO" durante 24 horas ',' Pura fingiendo estar poseído, ejemplo: poseído por maung, poseído por saltamontes, poseído por un refrigerador, etc.']
 					const der = dare[Math.floor(Math.random() * dare.length)]
 					tod = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
 					client.sendMessage(from, tod, image, { quoted: mek, caption: '*Dare*\n\n'+ der })
@@ -1377,7 +1364,7 @@ module.exports = msgHdlr = async (client , mek) => {
 							})
 							.on('end', function () {
 								console.log('Finish')
-								exec(`webpmux -set exif ${addMetadata(pack, author)} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata(pack, autor)} ${ran} -o ${ran}`, async (error) => {
 									 if (error) {
 											 reply(ind.stikga())
 											 fs.unlinkSync(media)	
@@ -1409,7 +1396,7 @@ module.exports = msgHdlr = async (client , mek) => {
 							})
 							.on('end', function () {
 								console.log('Finish')
-								exec(`webpmux -set exif ${addMetadata(pack, author)} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata(pack, autor)} ${ran} -o ${ran}`, async (error) => {
 									if (error) {
 											 reply(ind.stikga())
 											 fs.unlinkSync(media)	
@@ -1430,7 +1417,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'tts':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				if (args.length < 1) return client.sendMessage(from, 'Diperlukan kode bahasa!!', text, {quoted: mek})
+				if (args.length < 1) return client.sendMessage(from, 'Código de idioma requerido!!', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
 					if (args.length < 2) return client.sendMessage(from, '¿Dónde está el texto, tío?', text, {quoted: mek})
 					dtt = body.slice(8)
@@ -1969,7 +1956,7 @@ module.exports = msgHdlr = async (client , mek) => {
 						for (let _ of anu) {
 							sendMess(_.jid, `*「 BC GROUP 」*\n\nDel grupo : ${groupName}\nRemitente : wa.me/${(sender.split('@')[0])}\nMensaje : ${body.slice(6)}`)
 						}
-						reply('Sukses broadcast group')
+						reply('Éxito broadcast group')
 					}
 					break 
 				case 'eval':
@@ -2103,7 +2090,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					break
 				case 'addvn':
 				if (!isRegistered) return reply(ind.noregis())
-					if (!isQuotedAudio) return reply('Responder bloque vnnya!')
+					if (!isQuotedAudio) return reply('Responder bloque vn!')
 					svst = body.slice(7)
 					if (!svst) return reply('Y el audio?')
 					boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
