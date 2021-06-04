@@ -464,5 +464,5 @@ exports.left = (num) => {
 }
 
 exports.welcome = ( mdata , num ) => {
-	return`Bienvenid@ @${num.split('@')[0]}\Sal grupo *${mdata.subject}* ahora eres un Wamy-sito`
+	return`Bienvenid@ @${num.split('@')[0]}\al grupo *${mdata.subject}* ahora eres un Wamy-sito`
 }
