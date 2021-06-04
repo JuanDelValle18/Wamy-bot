@@ -830,17 +830,17 @@ module.exports = msgHdlr = async (client , mek) => {
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     await limitAdd(sender)
 					break 
-				//daftar 
-				case 'daftar':
+				//registro 
+				case 'registro':
                 if (isRegistered) return  reply(ind.rediregis())
                 if (!q.includes('|')) return  reply(ind.wrongf())
                 const namaUser = q.substring(0, q.indexOf('|') - 0)
                 const umurUser = q.substring(q.lastIndexOf('|') + 1)
                 const serialUser = createSerial(20)
-                if(isNaN(umurUser)) return await reply('Umur harus berupa angka!!')
-                if (namaUser.length >= 30) return reply(`why is your name so long it's a name or a train`)
-                if (umurUser > 40) return reply(`your age is too  old maximum 40 years`)
-                if (umurUser < 12) return reply(`your age is too young minimum 12 years`)
+                if(isNaN(umurUser)) return await reply('¡La edad debe ser un número!')
+                if (namaUser.length >= 30) return reply(`¿Por qué tu nombre es tan largo? Es un nombre o un tren`)
+                if (umurUser > 40) return reply(`tu edad es demasiado mayor 40 años como máximo`)
+                if (umurUser < 12) return reply(`su edad es demasiado joven mínimo 12 años`)
                 try {
 					ppimg = await client.getProfilePicture(`${sender.split('@')[0]}@c.us`)
 				} catch {
