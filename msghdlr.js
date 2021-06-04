@@ -45,7 +45,6 @@ const {
 	cr,
 	BotPrefix,
 	owner,
-	owner2,
 	author,
 	pack
 } = settingan
@@ -54,11 +53,6 @@ const {
 const ownerNumber = `${owner}@s.whatsapp.net`
 prefix = BotPrefix
 blocked = []   
-/*[-- manual load --]*/
-const owner2Number = `${owner2}@s.whatsapp.net`
-prefix = BotPrefix
-blocked = []   
-
 
 /*[-- load function --]*/
 /*[-> level <-]*/
@@ -113,13 +107,6 @@ const vcard = 'BEGIN:VCARD\n'
             + `TEL;type=CELL;type=VOICE;waid=${owner}:${PhoneNumber('+' + owner).getNumber('international')}\n` 
             + 'END:VCARD' 
 
-			/*[-- VCARD --]*/
-const vcard = 'BEGIN:VCARD\n' 
-+ 'VERSION:3.0\n' 
-+ 'FN:Ramiro Ramos\n' 
-+ `ORG: Wamy-bot;\n`
-+ `TEL;type=CELL;type=VOICE;waid=${owner2}:${PhoneNumber('+' + owner2).getNumber('international')}\n` 
-+ 'END:VCARD' 
 
 
        
@@ -250,7 +237,6 @@ module.exports = msgHdlr = async (client , mek) => {
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			const isOwner2 = owner2Number.includes(sender)
 			const isAfkOn = checkAfkUser(sender)
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isImage = type === 'imageMessage'
@@ -420,31 +406,6 @@ module.exports = msgHdlr = async (client , mek) => {
            return false
      	  }
      	}
-			/*[-- limit end --]*/
-            const isLimit = (sender) =>{ 
-				if (isOwner2 ) {return false;}
-				let position = false
-				for (let i of _limit) {
-				if (i.id === sender) {
-					let limits = i.limit
-				if (limits >= limitawal ) {
-					  position = true
-					  client.sendMessage(from, ind.limitend(pushname), text, {quoted: mek})
-					  return true
-				} else {
-					_limit
-					position = true
-					return false
-				 }
-			   }
-			 }
-			 if (position === false) {
-				 const obj = { id: sender, limit: 0 }
-				  _limit.push(obj)
-				  fs.writeFileSync('./database/user/limit.json',JSON.stringify(_limit))
-			 return false
-		  }
-		}
 		 
      	   
      	   /*[-- auto out form gc if member under limit --]*/
@@ -1150,13 +1111,12 @@ module.exports = msgHdlr = async (client , mek) => {
 				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 				    const uangku = checkATMuser(sender)
 					const pepolu = JSON.parse(fs.readFileSync('./database/bot/totalcmd.json'))[0].totalcmd
-					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isOwner2, isAntiLink, isBadWord), text, tescuk, cr)
+					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord), text, tescuk, cr)
 					break
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
 					teks = `*Nombre bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTHOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
-					teks = `*Nombre bot* : ${me.name}\n*OWNER2* : *Rairo Ramos*\n*AUTHOR* : Ramiro Ramos\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -1178,12 +1138,6 @@ module.exports = msgHdlr = async (client , mek) => {
          	   case 'creator':
                   client.sendMessage(from, {displayname: "Juan del Valle", vcard: vcard}, MessageType.contact, { quoted: mek})
                   client.sendMessage(from, 'Numero de Juan del Valle no spam o te bloquearé',MessageType.text, { quoted: mek} )
-				  break
-				  case 'admin':
-				  case 'owner2':
-				  case 'creator':
-				  client.sendMessage(from, {displayname: "Ramiro Ramos", vcard: vcard}, MessageType.contact, { quoted: mek})
-                  client.sendMessage(from, 'Numero de Ramiro Ramos no spam o te bloquearé',MessageType.text, { quoted: mek} )
 					break    
 				case 'leaderboard':
 				case 'lb':
@@ -1212,12 +1166,11 @@ module.exports = msgHdlr = async (client , mek) => {
 					break 
 				case 'giftlimit': 
 				if (!isOwner) return reply(ind.ownero())
-				if (!isOwner2) return reply(ind.owner2o())
 				const nomerr = args[0].replace('@','')
                 const jmla = args[1]
                 if (jmla <= 1) return reply(`el límite mínimo de regalos es 1`)
                 if (isNaN(jmla)) return reply(`el límite debe ser un número`)
-                if (!nomerr) return reply(`lo siento formato incorrecto \ n ingresó el parámetro correcto\nejemplo : ${prefix}giftlimit @62895710074883 20`)
+                if (!nomerr) return reply(`lo siento formato incorrecto \ n ingresó el parámetro correcto\nejemplo : ${prefix}giftlimit @50241033780 20`)
                 const cysz = nomerr + '@s.whatsapp.net'
                 var found = false
                         Object.keys(_limit).forEach((i) => {
@@ -1268,7 +1221,7 @@ module.exports = msgHdlr = async (client , mek) => {
                 hasiltf = jumblah - fee
                 addKoinUser(tujuantf, hasiltf)
                 confirmATM(sender, jumblah)
-                addKoinUser('17694447624@s.whatsapp.net', fee)
+                addKoinUser('50241033780@s.whatsapp.net', fee)
                 reply(`*「 Hecho 」*\n\nLas remesas de dinero han tenido éxito\nde : +${sender.split("@")[0]}\npara : +${tujuan}\nmonto de la transferencia : ${jumblah}\nimpuesto : ${fee}`)
                 break
 				case 'dompet':
