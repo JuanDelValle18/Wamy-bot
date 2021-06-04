@@ -1113,7 +1113,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nama bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTHOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
+					teks = `*Nombre bot* : ${me.name}\n*OWNER* : *Juan del Valle*\n*AUTHOR* : Juan del Valle\n*Numero Bot* : @${me.jid.split('@')[0]}\n*Prefijo* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -1135,6 +1135,8 @@ module.exports = msgHdlr = async (client , mek) => {
          	   case 'creator':
                   client.sendMessage(from, {displayname: "Juan del Valle", vcard: vcard}, MessageType.contact, { quoted: mek})
                   client.sendMessage(from, 'Numero de Juan del Valle no spam o te bloquearé',MessageType.text, { quoted: mek} )
+				  client.sendMessage(from, {displayname: "Ramiro Ramos", vcard: vcard}, MessageType.contact, { quoted: mek})
+                  client.sendMessage(from, 'Numero de Ramiro Ramos no spam o te bloquearé',MessageType.text, { quoted: mek} )
 					break    
 				case 'leaderboard':
 				case 'lb':
