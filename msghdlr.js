@@ -348,7 +348,7 @@ module.exports = msgHdlr = async (client , mek) => {
             try {
                 if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
                 const amountXp = Math.floor(Math.random() * 10) + 500
-                const requiredXp = 500 * (Math.pow(2, currentLevel) - 1)
+                const requiredXp = 2500 * (Math.pow(2, currentLevel) - 1)
                 const getLevel = getLevelingLevel(sender)
                 addLevelingXp(sender, amountXp)
                 if (requiredXp <= getLevelingXp(sender)) {
@@ -1095,7 +1095,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				break
 				case 'menu':
 				if (!isRegistered) return reply(ind.noregis())
-				    const reqXp  = 500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+				    const reqXp  = 2500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 				    const MiDinero = checkATMuser(sender)
 					const pepolu = JSON.parse(fs.readFileSync('./database/bot/totalcmd.json'))[0].totalcmd
 					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, MiDinero, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord), text, tescuk, cr)
@@ -1517,7 +1517,7 @@ module.exports = msgHdlr = async (client , mek) => {
                 const userLevel = getLevelingLevel(sender)
                 const userXp = getLevelingXp(sender)
                 if (userLevel === undefined && userXp === undefined) return reply(ind.lvlnul())
-                const requiredXp = 500 * (Math.pow(2, userLevel) - 1)
+                const requiredXp = 2500 * (Math.pow(2, userLevel) - 1)
                 resul = `┏━━❉ *LEVEL* ❉━━\n┣⊱ *Nombre* : ${pushname}\n┣⊱ Numero : wa.me/${sender.split("@")[0]}\n┣⊱ Usuario XP :  ${userXp}/${requiredXp}\n┣⊱ Usuario Level : ${userLevel}\n┗━━━━━━━━━━━━`
                 costum(resul, text, tescuk, per)
 				break 
