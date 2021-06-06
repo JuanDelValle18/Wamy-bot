@@ -123,7 +123,7 @@ const nsfw = JSON.parse(fs.readFileSync('./database/bot/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
 const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
-const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
+const MiDinero = JSON.parse(fs.readFileSync('./database/user/MiDinero.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
 const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
@@ -136,7 +136,7 @@ function kyun(seconds){
   var hours = Math.floor(seconds / (60*60));
   var minutes = Math.floor(seconds % (60*60) / 60);
   var seconds = Math.floor(seconds % 60);
-  return `${pad(hours)} Jam ${pad(minutes)} Menit ${pad(seconds)} Detik`
+  return `${pad(hours)} Hora/s ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 }
 
 function addMetadata(packname, autor) {	
@@ -266,7 +266,7 @@ module.exports = msgHdlr = async (client , mek) => {
 
 			/*[-- function level bar --]*/
 			var per = '*[▒▒▒▒▒▒▒▒▒▒] 0%*'
-			const peri = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+			const peri = 500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 			const perl = peri-getLevelingXp(sender) 
 			const resl = Math.round(100-((perl/getLevelingXp(sender))*100))
 			if (resl <= 10) {
@@ -348,7 +348,7 @@ module.exports = msgHdlr = async (client , mek) => {
             try {
                 if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
                 const amountXp = Math.floor(Math.random() * 10) + 500
-                const requiredXp = 5000 * (Math.pow(2, currentLevel) - 1)
+                const requiredXp = 500 * (Math.pow(2, currentLevel) - 1)
                 const getLevel = getLevelingLevel(sender)
                 addLevelingXp(sender, amountXp)
                 if (requiredXp <= getLevelingXp(sender)) {
@@ -368,7 +368,7 @@ module.exports = msgHdlr = async (client , mek) => {
                     for (let lmt of _limit) {
                         if (lmt.id === sender) {
                             let limitCounts = limitawal - lmt.limit
-                            if (limitCounts <= 0) return client.sendMessage(from,`Limit request anda sudah habis\n\n_Note : limit bisa di dapatkan dengan cara ${prefix}buylimit dan dengan naik level_`, text,{ quoted: mek})
+                            if (limitCounts <= 0) return client.sendMessage(from,`Su solicitud de límite se agotó\n\n_Note : Los límites se pueden obtener mediante ${prefix}buylimit y subiendo de nivel_`, text,{ quoted: mek})
                             client.sendMessage(from, ind.limitcount(limitCounts), text, { quoted : mek})
                             found = true
                         }
@@ -517,8 +517,8 @@ module.exports = msgHdlr = async (client , mek) => {
  	           const checkATM = checkATMuser(sender)
  	           try {
  	               if (checkATM === undefined) addATM(sender)
- 	               const uangsaku = Math.floor(Math.random() * 10) + 290
-	                addKoinUser(sender, uangsaku)
+ 	               const MiDinero = Math.floor(Math.random() * 10) + 290
+	                addKoinUser(sender, MiDinero)
   	          } catch (err) {
    	             console.error(err)
    	         }
@@ -553,7 +553,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				data = await fetchJson(`https://api.zeks.xyz/api/apkpure?q=${body.slice(9)}&apikey=apivinz`, {method: 'get'})
 				teks = '=================\n'
 				for (let i of data.result) {
-					teks += `*Nama APK* : ${i.title}\n*Link* : ${i.url}\n*Rating* : ${i.rating}\n=================\n`
+					teks += `*Nombre APK* : ${i.title}\n*Link* : ${i.url}\n*Rating* : ${i.rating}\n=================\n`
 					}
 				reply(teks.trim())
 				await limitAdd(sender)
@@ -563,21 +563,21 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					anu = await fetchJson(`https://api.zeks.xyz/api/tebakgambar?apikey=apivinz`, {method: 'get'})
 					ngebuff = await getBuffer(anu.result.soal)
-					tebak = `➸ Jawaban : *${anu.result.jawaban}*`
+					tebak = `➸ Respuesta : *${anu.result.jawaban}*`
 					setTimeout( () => {
 					client.sendMessage(from, tebak, text, {quoted: mek})
 					}, 30000) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, '_10 Detik lagi..._', text) // ur cods
+					client.sendMessage(from, '_10 Segundos de retraso..._', text) // ur cods
 					}, 20000) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, '_20 Detik lagi..._', text) // ur cods
+					client.sendMessage(from, '_20 Segundos de retraso..._', text) // ur cods
 					}, 10000) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, '_30 Detik lagi..._', text) // ur cods
+					client.sendMessage(from, '_30 Segundos de retraso..._', text) // ur cods
 					}, 2500) // 1000 = 1s,
 					setTimeout( () => {
-					client.sendMessage(from, ngebuff, image, { caption: '_Tebak bro!!! gak bisa jawab donasi ya:v_', quoted: mek }) // ur cods
+					client.sendMessage(from, ngebuff, image, { caption: '_Adivina hermano!!! No puedo responder a la donación:v_', quoted: mek }) // ur cods
 					}, 0) // 1000 = 1s,
 					await limitAdd(sender) 
 				break
@@ -657,7 +657,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					const tex = encodeURIComponent(body.slice(8))
-					if (!tex) return client.sendMessage(from, 'INTRODUZCA LA URL / TEXTO PARA HACER QR', text, {quoted: mek})
+					if (!tex) return client.sendMessage(from, 'INTRODUZCA LA URL/TEXTO PARA HACER QR', text, {quoted: mek})
 					const buff = await getBuffer(`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${tex}`)
 					client.sendMessage(from, buff, image, {quoted: mek})
 					await limitAdd(sender)
@@ -666,7 +666,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'lirik':
 				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/lirik?q=${body.slice(7)}&apikey=BotWeA`)
 				thum = await getBuffer(anu.result.thumb)
-				teks = `*「 LAGU DI TEMUKAN 」*\n\n*Judul* : ${anu.result.judul}\n*Album* : ${anu.result.album}\n*public in* : ${anu.result.dipublikasi}\n*Lyrics* : ${anu.result.lirik}`
+				teks = `*「 Canción encontrada 」*\n\n*Título* : ${anu.result.judul}\n*Álbum* : ${anu.result.album}\n*publicado en* : ${anu.result.dipublikasi}\n*Lyrics* : ${anu.result.lirik}`
 				client.sendMessage(from, thum, image, { quoted : mek, caption: teks })
 				break
 				case 'ttp':
@@ -781,7 +781,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				    try {
 						res = await fetchJson(`https://tobz-api.herokuapp.com/api/husbu?apikey=BotWeA`)
 						buffer = await getBuffer(res.image)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Ingat! Cintai husbumu'})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Recuerda! Ama a tu esposo'})
 					} catch (e) {
 						console.log(`Error :`, color(e,'red'))
 						reply('❌ *ERROR* ❌')
@@ -804,7 +804,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
                 data = await fetchJson(`https://tobz-api.herokuapp.com/api/joox?q=${body.slice(6)}&apikey=BotWeA`, {method: 'get'})
                if (data.error) return reply(data.error)
-                 infomp3 = `*Lagu Ditemukan!!!*\nJudul : ${data.result.judul}\nAlbum : ${data.result.album}\nDipublikasi : ${data.result.dipublikasi}`
+                 infomp3 = `*Canción encontrada!!!*\nArtista : ${data.result.judul}\nÁlbum : ${data.result.album}\nPublicado : ${data.result.dipublikasi}`
                 buffer = await getBuffer(data.result.thumb)
                 lagu = await getBuffer(data.result.mp3)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
@@ -1095,10 +1095,10 @@ module.exports = msgHdlr = async (client , mek) => {
 				break
 				case 'menu':
 				if (!isRegistered) return reply(ind.noregis())
-				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
-				    const uangku = checkATMuser(sender)
+				    const reqXp  = 500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+				    const MiDinero = checkATMuser(sender)
 					const pepolu = JSON.parse(fs.readFileSync('./database/bot/totalcmd.json'))[0].totalcmd
-					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord), text, tescuk, cr)
+					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, MiDinero, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord), text, tescuk, cr)
 					break
 				case 'info':
 					me = client.user
@@ -1130,18 +1130,18 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'lb':
 				bo = args[0]
 				_level.sort((a, b) => (a.xp < b.xp) ? 1 : -1)
-				uang.sort((a, b) => (a.uang < b.uang) ? 1 : -1)
+				MiDinero.sort((a, b) => (a.MiDinero < b.MiDinero) ? 1 : -1)
                 let leaderboardlvl = '-----[ *LEADERBOARD LEVEL* ]----\n\n'
-                let leaderboarduang = '-----[ *LEADERBOARD UANG* ]----\n\n'
+                let leaderboardMiDinero = '-----[ *LEADERBOARD MiDinero* ]----\n\n'
                 let nom = 0
                 try {
                     for (let i = 0; i < 10; i++) {
                         nom++
                         leaderboardlvl += `*[${nom}]* wa.me/${_level[i].id.replace('@s.whatsapp.net', '')}\n┗⊱ *XP*: ${_level[i].xp} *Level*: ${_level[i].level}\n`
-                        leaderboarduang += `*[${nom}]* wa.me/${uang[i].id.replace('@s.whatsapp.net', '')}\n┣⊱ *Dinero*: _Rp${uang[i].uang}_\n┗⊱ *Limit*: ${limitawal - _limit[i].limit}\n`
+                        leaderboardMiDinero += `*[${nom}]* wa.me/${MiDinero[i].id.replace('@s.whatsapp.net', '')}\n┣⊱ *Dinero*: _Rp${MiDinero[i].MiDinero}_\n┗⊱ *Limit*: ${limitawal - _limit[i].limit}\n`
                     }
                     await reply(leaderboardlvl)
-                    await reply(leaderboarduang)
+                    await reply(leaderboardMiDinero)
                 } catch (err) {
                     console.error(err)
                     await reply(`minimo ${len} usuario para poder acceder a la base de datos`)
@@ -1214,19 +1214,19 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'dompet':
 				if (!isRegistered) return reply(ind.noregis())
 				const kantong = checkATMuser(sender)
-				reply(ind.uangkau(pushname, sender, kantong))
+				reply(ind.MiDinero(pushname, sender, kantong))
 				break
 				case 'buylimit':
 				if (!isRegistered) return reply(ind.noregis())
 				payout = body.slice(10)
-				if(isNaN(payout)) return await reply('limit harus berupa angka!!')
+				if(isNaN(payout)) return await reply('El límite debe de ser un número!!')
 				const koinPerlimit = 300
 				const total = koinPerlimit * payout
 				if ( checkATMuser(sender) <= total) return reply(`Lo siento, no tienes suficiente dinero. recoger y comprar más tarde`)
 				if ( checkATMuser(sender) >= total ) {
 					confirmATM(sender, total)
 					bayarLimit(sender, payout)
-					await reply(`*「 PAGO EXITOSO 」*\n\n*Remitente* : Admin\n*receptor* : ${pushname}\n*monto de la compra* : ${payout} \n*precio límite* : ${koinPerlimit}/limite\n*sisa uang muel resto de tu dinero* : ${checkATMuser(sender)}\n\nel proceso es exitoso con el número de pago\n${createSerial(15)}`)
+					await reply(`*「 PAGO EXITOSO 」*\n\n*Remitente* : Admin\n*receptor* : ${pushname}\n*monto de la compra* : ${payout} \n*precio límite* : ${koinPerlimit}/limite\n*MiDinero resto de tu dinero* : ${checkATMuser(sender)}\n\nel proceso es exitoso con el número de pago\n${createSerial(15)}`)
 				} 
 				break
 				//no rest api 
@@ -1272,7 +1272,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					bisakah = body.slice(1)
-					const bisa =['Bisa','Tidak Bisa','Coba Ulangi']
+					const bisa =['Lata','No puedo','intenta otra vez']
 					const keh = bisa[Math.floor(Math.random() * bisa.length)]
 					client.sendMessage(from, 'Pregunta : *'+bisakah+'*\n\Respuesta : '+ keh, text, { quoted: mek })
 					await limitAdd(sender)
@@ -1281,7 +1281,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					kapankah = body.slice(1)
-					const kapan =['Besok','Lusa','Tadi','4 Hari Lagi','5 Hari Lagi','6 Hari Lagi','1 Minggu Lagi','2 Minggu Lagi','3 Minggu Lagi','1 Bulan Lagi','2 Bulan Lagi','3 Bulan Lagi','4 Bulan Lagi','5 Bulan Lagi','6 Bulan Lagi','1 Tahun Lagi','2 Tahun Lagi','3 Tahun Lagi','4 Tahun Lagi','5 Tahun Lagi','6 Tahun Lagi','1 Abad lagi','3 Hari Lagi']
+					const kapan =['Mañana','Pasado mañana','Antier','4 Días restantes','5 Días restantes','6 Días restantes','1 Semanas más','2 Semanas más','3 Semanas más','1 Meses más','2 Meses más','3 Meses más','4 Meses más','5 Meses más','6 Meses más','1 Años más','2 Años más','3 Años más','4 Años más','5 Años más','6 Años más','1 Siglos más','3 Días restantes']
 					const koh = kapan[Math.floor(Math.random() * kapan.length)]
 					client.sendMessage(from, 'Pregunta : *'+kapankah+'*\n\Respuesta : '+ koh, text, { quoted: mek })
 					await limitAdd(sender)
@@ -1290,7 +1290,7 @@ module.exports = msgHdlr = async (client , mek) => {
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
 					apakah = body.slice(1)
-					const apa =['Iya','Tidak','Bisa Jadi','Coba Ulangi']
+					const apa =['si','No','Puede ser','Intenta otra vez']
 					const kah = apa[Math.floor(Math.random() * apa.length)]
 					client.sendMessage(from, 'Pregunta : *'+apakah+'*\n\Respuesta : '+ kah, text, { quoted: mek })
 					await limitAdd(sender)
@@ -1340,7 +1340,7 @@ module.exports = msgHdlr = async (client , mek) => {
 								fs.unlinkSync(media)
 							})
 					} else {
-						reply('kirim foto dengan caption ${prefix}ocr')
+						reply('Enviar foto con pie de foto ${prefix}ocr')
 					}
 					await limitAdd(sender)
 				break
@@ -1517,7 +1517,7 @@ module.exports = msgHdlr = async (client , mek) => {
                 const userLevel = getLevelingLevel(sender)
                 const userXp = getLevelingXp(sender)
                 if (userLevel === undefined && userXp === undefined) return reply(ind.lvlnul())
-                const requiredXp = 5000 * (Math.pow(2, userLevel) - 1)
+                const requiredXp = 500 * (Math.pow(2, userLevel) - 1)
                 resul = `┏━━❉ *LEVEL* ❉━━\n┣⊱ *Nombre* : ${pushname}\n┣⊱ Numero : wa.me/${sender.split("@")[0]}\n┣⊱ Usuario XP :  ${userXp}/${requiredXp}\n┣⊱ Usuario Level : ${userLevel}\n┗━━━━━━━━━━━━`
                 costum(resul, text, tescuk, per)
 				break 
