@@ -1,7 +1,7 @@
 const a = '```'
 
 exports.wait = () => {
-	return`*「 WAIT 」 EN PROCESO*`
+	return`*「 ESPERA 」 EN PROCESO*`
 }
 
 exports.succes = () => {
@@ -9,11 +9,11 @@ exports.succes = () => {
 }
 
 exports.lvlon = () => {
-	return`*「 ENABLE 」 LEVELING*`
+	return`*「 ACTIVADO 」 LEVELING*`
 }
 
 exports.lvloff = () => {
-	return`*「 DISABLE 」 LEVELING*`
+	return`*「 DESACTIVADO 」 LEVELING*`
 }
 
 exports.lvlnul = () => {
@@ -33,7 +33,7 @@ exports.rediregis = () => {
 }
 
 exports.stikga = () => {
-	return`*sí, falló, intenta repetir de nuevo*`
+	return`*si falló, intenta repetir de nuevo*`
 }
 
 exports.linkga = () => {
@@ -69,11 +69,11 @@ exports.bug = () => {
 }
 
 exports.wrongf = () => {
-	return`*Formato incorrecto / texto en blanco*`
+	return`*Formato incorrecto/texto en blanco*`
 }
 
 exports.clears = () => {
-	return`*clear all Success*`
+	return`*Limpiar todo, Éxitoso*`
 }
 
 exports.pc = () => {
@@ -116,7 +116,7 @@ exports.reglevelahf = (command, pushname, getLevelingLevel, sender, ahf) => {
 	return`*Lo siento ${pushname} tu nivel no es suficiente*\n\n*┏⊱level : ${getLevelingLevel(sender)}*\n*┣⊱tipo de comando : ${command}*\n*┗⊱requisitos de nivel : ${ahf}*\n\n_NOTE : CHAT / SIEMPRE PARA OBTENER EXP_`
 }
 
-exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku, role, client , process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord) => { 
+exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, MiDinero, role, client , process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord) => { 
 	if (isOwner) {
 	    owner = "Owner"
 	} else if (!isOwner) {
@@ -128,7 +128,7 @@ ${a}❏ ABOUT USER${a}
  ${a}│ Nombre : ${pushname}${a}
  ${a}│ Numero : wa.me/${sender.split("@")[0]}${a}
  ${a}│ owmer bot : ${owner}${a}
- ${a}│ Tu dinero : Rp${uangku},-${a}
+ ${a}│ Tu dinero : Rp${MiDinero},-${a}
  ${a}│ XP : ${getLevelingXp(sender)}/${reqXp} ${a}
  ${a}│ Level : ${getLevelingLevel(sender)}${a}
  ${a}│ Role : ${role}${a}
@@ -156,7 +156,7 @@ ${a}❏ABOUT GROUP${a}
  ${a}╰ antilink : ${isAntiLink}${a}
  
  ${a}「uso total del comando」${a}
- *${pepolu} used*
+ *${pepolu}used*
  *${prefix}info*
  *${prefix}donasi*
  *${prefix}owner*
@@ -269,17 +269,17 @@ ${a}❏OWNER MENU${a}
  ${a}│ • Wamy!Bot <nombre del bot>${a}
  ${a}│ • Pokémon Go <público dirigido>${a}
  ${a}│${a}
- ${a}╰ • NOTE : PROYECTO WAMY!${a}
+ ${a}╰ • NOTA : PROYECTO WAMY!${a}
 `
 } else if (!isGroup) {
     return `
 ${a}❏ ABOUT USER${a}
  ${a}│ Nombre : ${pushname}${a}
  ${a}│ Numero : wa.me/${sender.split("@")[0]}${a}
- ${a}│ Dinero : Rp${uangku},-${a}
+ ${a}│ Dinero : Rp${MiDinero},-${a}
  ${a}│ XP : ${getLevelingXp(sender)}/${reqXp} ${a}
  ${a}│ Level : ${getLevelingLevel(sender)}${a}
- ${a}│ Role : ${role}${a}
+ ${a}│ Rol : ${role}${a}
  ${a}╰ User register : ${_registered.length}${a}
  
 ${a}❏ABOUT BOT${a}
@@ -407,7 +407,7 @@ ${a}❏GRACIAS A${a}
  ${a}│ • Wamy!Bot <nombre del bot>${a}
  ${a}│ • Pokémon Go <público dirigido>${a}
  ${a}│${a}
- ${a}╰ • NOTE : PROYECTO WAMY!${a}
+ ${a}╰ • NOTA : PROYECTO WAMY!${a}
 `
 }
 }
@@ -420,7 +420,7 @@ exports.levelup = (pushname, sender, getLevelingXp,  getLevel, getLevelingLevel,
 ┣⊱ *Numero* : wa.me/${sender.split("@")[0]}
 ┣⊱ *Xp* : ${getLevelingXp(sender)}
 ┣⊱ *Limit* : +3
-┣⊱ *Role*: ${role}
+┣⊱ *Rol*: ${role}
 ┗⊱ *Level* : ${getLevel} ⊱ ${getLevelingLevel(sender)}
 `}
  
@@ -439,8 +439,8 @@ exports.satukos = () => {
 	return`*Agregar parámetros 1/enable o 0/disable`
 }
 
-exports.uangkau = (pushname, sender, uangkau) => {
-	return`*┏⊱ 「 ATM 」⊰━┓*\n┣⊱ *Nombre* : ${pushname}\n┣⊱ *Numero* : ${sender.split("@")[0]}\n┣⊱ *Dinero* : ${uangkau}\n┗━━━━━━━━━━`
+exports.MiDinero = (pushname, sender, MiDinero) => {
+	return`*┏⊱ 「 ATM 」⊰━┓*\n┣⊱ *Nombre* : ${pushname}\n┣⊱ *Numero* : ${sender.split("@")[0]}\n┣⊱ *Dinero* : ${MiDinero}\n┗━━━━━━━━━━`
 }
 
 exports.afkOn = (pushname, reason) => {
@@ -460,9 +460,9 @@ exports.afkDone = (pushname) => {
 }
 
 exports.left = (num) => {
-	return`Se ha ido un Wamy-sito @${num.split('@')[0]} ojalá vuelvas pronto.`
+	return`Se ha ido un/a Wamy-sit@ @${num.split('@')[0]} ojalá vuelvas pronto.`
 }
 
 exports.welcome = ( mdata , num ) => {
-	return`Bienvenid@ @${num.split('@')[0]}\al grupo *${mdata.subject}* ahora eres un Wamy-sito`
+	return`Bienvenid@ @${num.split('@')[0]}\ al grupo *${mdata.subject}* ahora eres un/a Wamy-sit@`
 }
