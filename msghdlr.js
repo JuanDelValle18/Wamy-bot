@@ -348,7 +348,7 @@ module.exports = msgHdlr = async (client , mek) => {
             try {
                 if (currentLevel === undefined && checkId === undefined) addLevelingId(sender)
                 const amountXp = Math.floor(Math.random() * 10) + 500
-                const requiredXp = 2500 * (Math.pow(2, currentLevel) - 1)
+                const requiredXp = 5000 * (Math.pow(2, currentLevel) - 1)
                 const getLevel = getLevelingLevel(sender)
                 addLevelingXp(sender, amountXp)
                 if (requiredXp <= getLevelingXp(sender)) {
@@ -575,7 +575,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					}, 10000) // 1000 = 1s,
 					setTimeout( () => {
 					client.sendMessage(from, '_30 Segundos de retraso..._', text) // ur cods
-					}, 2500) // 1000 = 1s,
+					}, 5000) // 1000 = 1s,
 					setTimeout( () => {
 					client.sendMessage(from, ngebuff, image, { caption: '_Adivina hermano!!! No puedo responder a la donación:v_', quoted: mek }) // ur cods
 					}, 0) // 1000 = 1s,
@@ -943,7 +943,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					case 'infonomor':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
-                    if (args.length < 1) return reply(`Masukan Nomor\nejemplo : ${prefix}infonomor 0812345678`)
+                    if (args.length < 1) return reply(`Ingrese número\nejemplo : ${prefix}información del número 0812345678`)
                 data = await fetchJson(`https://docs-jojo.herokuapp.com/api/infonomor?no=${body.slice(11)}`)
                 if (data.error) return reply(data.error)
                 if (data.result) return reply(data.result)
@@ -1095,7 +1095,7 @@ module.exports = msgHdlr = async (client , mek) => {
 				break
 				case 'menu':
 				if (!isRegistered) return reply(ind.noregis())
-				    const reqXp  = 2500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 				    const MiDinero = checkATMuser(sender)
 					const pepolu = JSON.parse(fs.readFileSync('./database/bot/totalcmd.json'))[0].totalcmd
 					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, MiDinero, role, client, process , pepolu, groupMetadata, groupAdmins, isGroup, isGroupAdmins, isLevelingOn, isWelkom, isOwner, isAntiLink, isBadWord), text, tescuk, cr)
@@ -1233,10 +1233,10 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'slap':
                     kapankah = body.slice(1)
                     if (isLimit(sender)) return reply(ind.limitend(pusname))
-					const slap =['perro ',' tu cerdo ',' cachorros ',' eres tonto de nuevo ',' te ves como un mono ',' estás soltero otra vez en casa idiota ',' así que quieres tener una novia, solo mira como un mono se ha escapado de la jaula ',' Eres guapo y tóxico, simplemente estás baperan ',' Eres un bastardo ',' Eres un bastardo ',' Siento que estás llorando ',' Estás todo coño ',' Mirando a los cachorros leyendo ',' guapo, solo recoge chicas asando ',' Eres hermoso beb, mierda, perro, cocodrilo, ',' hijo del diablo ',' puki lu ',' perro invita a gelud ',' con fantasmas temerosos de cupu ngentod ',' cupu cupu simplemente no muerdas ',' todos ustedes dick ',' chico, todos ustedes dick ',' 3 días otra vez ']
+					const slap =['perr@','te hablo a ti cerdo','de inocente no tienes nada','eres tont@ o te haces','te ves como un/a mon@','la pasarás solter@ el resto de tu vida UwU','así que quieres tener un/a novi@, ya te has visto en un espejo?','No eres gracios@ y eres fe@, vaya combinación para estar sol@ por el resto de tu vida','Vaya que no estamos cerca, si ni te soporto en digital, ni me imagino de lo que será en vida real','Eres un fan de YoloTroll','Siento que estás llorando','Sé que tus padres no te lo han dicho pero, ERES ADOPTADO','Woody ya está orgullose de ti puesto que por fin entendiste que solo eres un juguete','Las únicas mujeres que te han besado son tu madre, abuela y demás familiares','Eres hermoso baby, en este instante se dicen cosas opuestas a la realidad','Eres adoptad@','De seguro te gustó Boku no Pico','Si te miras al espejo, talvez te asustes tú mismo','Ni los fantasmas se sienten tranquilos con tenerte en la misma casa','Enfrente de ti hay una silla con un pastel :3','Acéptalo, te gustan los trapitos','*PODRÁS SER:* feo, inseguro, con temor al rechazo, tímido, sin amigos, muy feo, realmente aburrido','Lo siento, me asusté al ver tu foto de perfil']
 					const ple = slap[Math.floor(Math.random() * slap.length)]
 					pod = await getBuffer(`https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif`)
-					client.sendMessage(from, pod, image, { quoted: mek, caption: '*Toxic*\n\n'+ ple })
+					client.sendMessage(from, pod, image, { quoted: mek, caption: '*Tóxico*\n\n'+ ple })
 					await limitAdd(sender)
 					break
 					case 'tampar':
@@ -1517,7 +1517,7 @@ module.exports = msgHdlr = async (client , mek) => {
                 const userLevel = getLevelingLevel(sender)
                 const userXp = getLevelingXp(sender)
                 if (userLevel === undefined && userXp === undefined) return reply(ind.lvlnul())
-                const requiredXp = 2500 * (Math.pow(2, userLevel) - 1)
+                const requiredXp = 5000 * (Math.pow(2, userLevel) - 1)
                 resul = `┏━━❉ *LEVEL* ❉━━\n┣⊱ *Nombre* : ${pushname}\n┣⊱ Numero : wa.me/${sender.split("@")[0]}\n┣⊱ Usuario XP :  ${userXp}/${requiredXp}\n┣⊱ Usuario Level : ${userLevel}\n┗━━━━━━━━━━━━`
                 costum(resul, text, tescuk, per)
 				break 
@@ -1770,16 +1770,16 @@ module.exports = msgHdlr = async (client , mek) => {
 				case 'addbadword':
                     if (!isOwner) return reply(ind.ownerb())
                     if (!isGroupAdmins) return reply(ind.admin())
-                    if (args.length < 1) return reply( `Enviar pedidos${prefix}addbadword [kata kasar]. ejemplo ${prefix}addbadword bego`)
+                    if (args.length < 1) return reply( `Enviar pedidos${prefix}addbadword [Palabras fuertes]. ejemplo ${prefix}addbadword put*`)
                     const bw = body.slice(12)
                     bad.push(bw)
                     fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
-                    reply('Success Menambahkan Bad Word!')
+                    reply('¡Éxito añadiendo groserias!')
                     break
                 case 'delbadword':
                     if (!isOwner) return reply(ind.ownerb())
                     if (!isGroupAdmins) return reply(ind.admin())
-                    if (args.length < 1) return reply( `Enviar pedidos${prefix}addbadword [kata kasar]. ejemplo ${prefix}addbadword bego`)
+                    if (args.length < 1) return reply( `Enviar pedidos${prefix}addbadword [Palabras fuertes]. ejemplo ${prefix}addbadword put*`)
                     let dbw = body.slice(12)
                     bad.splice(dbw)
                     fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
