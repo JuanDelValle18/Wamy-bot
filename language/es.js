@@ -131,7 +131,7 @@ ${a}❏ ABOUT USER${a}
  ${a}│ Tu dinero : Rp${MiDinero},-${a}
  ${a}│ XP : ${getLevelingXp(sender)}/${reqXp} ${a}
  ${a}│ Level : ${getLevelingLevel(sender)}${a}
- ${a}│ Role : ${role}${a}
+ ${a}│ Rol : ${role}${a}
  ${a}╰ User register : ${_registered.length}${a}
  
  
