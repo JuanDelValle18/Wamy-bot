@@ -994,9 +994,9 @@ module.exports = msgHdlr = async (client , mek) => {
                 case 'text3d':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-              	    if (args.length < 1) return reply('teksnya mana kak?')
+              	    if (args.length < 1) return reply('¿dónde está el texto?')
                     teks = `${body.slice(8)}`
-                    if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan, Maksimal 10 kalimat', text, {quoted: mek})
+                    if (teks.length > 10) return client.sendMessage(from, 'El texto es largo, un máximo de 10 frases.', text, {quoted: mek})
                     buff = await getBuffer(`https://docs-jojo.herokuapp.com/api/text3d?text=${teks}`, {method: 'get'})
                     client.sendMessage(from, buff, image, {quoted: mek, caption: `${teks}`})
 			     	await limitAdd(sender)
@@ -1438,7 +1438,7 @@ module.exports = msgHdlr = async (client , mek) => {
 					await limitAdd(sender)
 				break
 				case 'simi':
-					if (args.length < 1) return reply('Textnya mana um?')
+					if (args.length < 1) return reply('¿Dónde está el mensaje de texto?')
 					teks = body.slice(5)
 					anu = await simih(teks) 
 					reply(anu)
@@ -1454,7 +1454,7 @@ module.exports = msgHdlr = async (client , mek) => {
 						fs.unlinkSync(media)
 						if (err) return reply(ind.stikga())
 						buffer = fs.readFileSync(ran)
-						client.sendMessage(from, buffer, image, {quoted: mek, caption: '𝗱𝗮?? 𝗷𝗮𝗱𝗶 '})
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: '¿¿sí?? entonces'})
 						fs.unlinkSync(ran)
 					})
 					await limitAdd(sender)
