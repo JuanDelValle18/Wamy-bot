@@ -266,7 +266,7 @@ module.exports = msgHdlr = async (client , mek) => {
 
 			/*[-- function level bar --]*/
 			var per = '*[▒▒▒▒▒▒▒▒▒▒] 0%*'
-			const peri = 500 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+			const peri = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 			const perl = peri-getLevelingXp(sender) 
 			const resl = Math.round(100-((perl/getLevelingXp(sender))*100))
 			if (resl <= 10) {
