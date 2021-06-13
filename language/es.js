@@ -265,7 +265,6 @@ ${a}❏OWNER MENU${a}
  ${a}❏GRACIAS A${a}
  ${a}│${a}
  ${a}│ • JUAN <editor>${a}
- ${a}│ • RAMIRO <creador de los grupos>${a}
  ${a}│ • Wamy!Bot <nombre del bot>${a}
  ${a}│ • Pokémon Go <público dirigido>${a}
  ${a}│${a}
@@ -403,7 +402,6 @@ ${a}❏OWNER MENU${a}
 ${a}❏GRACIAS A${a}
  ${a}│${a}
  ${a}│ • JUAN <editor>${a}
- ${a}│ • RAMIRO <creador de los grupos>${a}
  ${a}│ • Wamy!Bot <nombre del bot>${a}
  ${a}│ • Pokémon Go <público dirigido>${a}
  ${a}│${a}
